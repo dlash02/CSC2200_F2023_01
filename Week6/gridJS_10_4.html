@@ -1,0 +1,65 @@
+<html>
+<head>
+    <title> Grid Form </title>
+    <style>
+        form {
+            display: grid;
+            padding: 1em;
+            background: #f9f9f9;
+            border: 1px solid #c1c1c1;
+            margin: 2rem auto 0 auto;
+            max-width: 600px;
+            padding: 1em;
+        }
+        form input {
+            background: #fff;
+            border: 1px solid #9c9c9c;
+        }
+        form button {
+            background: lightgrey;
+            padding: 0.7em;
+            width: 100%;
+            border: 0;
+        }
+        form button:hover {
+            background: gold;
+        }
+
+        label {
+            padding: 0.5em 0.5em 0.5em 0;
+        }
+
+        input {
+            padding: 0.7em;
+            margin-bottom: 0.5rem;
+        }
+        input:focus {
+            outline: 3px solid gold;
+        }
+
+        @media (min-width:  1000px) {
+            form {
+                grid-template-columns: 200px 1fr;
+                grid-gap: 16px;
+            }
+
+            label {
+                text-align: right;
+                grid-column: 1 / 2;
+            }
+            input,
+            button, #results {
+                grid-column: 2 / 3;
+            }
+        }
+    </style>
+    <script type="application/javascript" src="js/loopy.js"></script>
+</head>
+<form class="form1" action="">
+    <label for="firstName" class="first-name">First Name</label>
+    <input id="firstName" type="text">
+    <label for="nTimes"></label>
+    <input id="nTimes" type="number" min="1" max="140" />
+    <button type="button" onclick="doLoops()">Start</button>
+    <div id="results"> Results Here </div>
+</form>
