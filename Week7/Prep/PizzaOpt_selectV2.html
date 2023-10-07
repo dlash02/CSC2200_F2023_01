@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/mainPizza.css" />
+    <script src="js/pizzaWork.js" type="application/javascript" ></script>
+    <title>Title</title>
+</head>
+<body>
+<h2> Big Ceasers Pizza</h2>
+<form id="myForm" name="myForm">
+    <label for="pizzaSize" > Pizza Size: </label>
+    <div id="pizzaSize" class="formElem">
+        Small 8": <input type="radio" name="pSize" value="Small" checked>
+        Medium 10": <input type="radio" name="pSize" value="Medium">
+        Large 12": <input type="radio" name="pSize" value="Large">
+    </div>
+    <label for="pizzaTopping" > Pizza Toppings: </label>
+    <div id="pizzaTopping">
+        <div class="formElem" >
+         Pepperoni: <input type="checkbox" name="topping" value="pepperoni">
+         Sauce: <input type="checkbox" name="topping" value="sauce" >
+         Mushrooms: <input type="checkbox" name="topping" value="mushroom">
+         Onions: <input type="checkbox" name="topping" value="onions">
+        </div>
+    </div>
+    <label for="delOptions" > Delivery Options: </label>
+    <select id="delOptions" class="selOpts" width="1" >
+       <option value="Pick-Up"> Pick Up </option>
+       <option value="Delivery" selected> Delivery </option>
+       <option value="In-Store"> In Store </option>
+    </select>
+    <button type='button' name="myButton" onclick="calcTotal()" > Calc Total </button>
+    <label for="results"> Total Cost: </label>
+    <div id="results" class="formElem resultArea">
+        Your Total Here
+    </div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/JsArrayMain.css" />
+    <script type="application/javascript" src="js/ArrayWorksMain.js"></script>
+</head>
+<body>
+<div id="form">
+     <span id="header"> My List </span>
+     <label for="item" >Add An Item</label>
+     <input id="item" type="text">
+
+    <label for="item" >Number Items</label>
+     <div id="rads">
+        One <input type='radio' id="r1" name="myRadio" value="1" checked>
+        Two <input type='radio' id="r2" name="myRadio" value="2">
+        Three <input type='radio' id="r3" name="myRadio" value="3">
+     </div>
+     <button type='button' onClick="addItem()">Add Item</button>
+     <button type='button' onClick="removeFromList()">Remove Item</button>
+     <button type='button' onClick="showList()">Show List</button>
+    <br />
+    <label for="results" class="Results">Results:</label>
+    <span id="results"> results</span>
+</div>
+</body></html>

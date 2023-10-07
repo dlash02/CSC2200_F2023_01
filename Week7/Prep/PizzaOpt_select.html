@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        let pizza  = new Array();
+        pizza['sm'] = 9.99;
+        pizza['med'] = 10.99;
+        pizza['lar'] = 11.99;
+
+        let tops  = new Array();
+        tops['pep'] = .50;
+        tops['sau'] = .60;
+        tops['shroom'] = .40;
+        tops['pine'] = 1.00;
+
+        let del = [];  // Added
+        del['pu'] = 1.0;  // Added
+        del['inS'] = 0;  // Added
+        del['del'] = 5.00;  // Added
+        function calcTotal() {
+           alert("validate");
+
+           let pSize = getRadioChecked( document.myForm.pSize);
+           let t = document.myForm.topping;
+           console.log(`pSize:${pSize}`);
+          alert(`pSize:${pSize}`);
+           if( !pSize ) {
+               alert("You gotta pick a pizza");
+           } else {
+               if ( pizza[pSize] == null ){
+                   alert("Something broke pSize" +pSize);
+               } else {
+                   pCost = pizza[pSize];
+                   console.log(`pizza cost: ${pizza[pSize]}`)
+               }
+           }
+           let tTotal = getToppingTototal( t )
+           console.log(`tTotal: ${tTotal}`)
+           // finish this form
+           // ToDo:
+           // Add another topping onions: .5
+           // Add another pSize: Extra Large 15.99
+           // Write the total to the id=results area that shows
+           //  total cost, Pizza cost and toppings cost
+           //  E.g.,
+           // Total:20.00 Pizza: 19.00 Toppings:1.00
+            let dOp = document.getElementById('delOption');
+            let c0 = dOp[0].selected;
+            console.log(`co:${c0}`);
+
+            let c1 = dOp[1].selected;;
+            console.log(`c1:${c1}`);
+
+            let c2 = dOp[2].selected;
+            console.log(`c2:${c2}`);
+            let selVal = getTheSelectedItem( dOp );
+            console.log(`selVal:${selVal}`);
+            let extraCost = del[selVal];
+            let res = document.getElementById('results');
+            res.innerHTML = "ExtraCost:" + extraCost;
+
+
+           return false;
+       }
+        function getToppingTototal( t ) {
+           let total = 0;
+           for( i=0; i<t.length; i++ ) {
+               if ( t[i].checked) {
+                   let v = t[i].value;
+                   total += tops[v];
+                   console.log(`total:${total} top:${tops[v]}`)
+               }
+           }
+           return total;
+        }
+       function getRadioChecked( theRad ) {
+            // return the value of the checked radio button
+            // or return false if none are checked
+            let nButtons = theRad.length; // How many radio button in the group
+            for( let i=0; i<nButtons; i++ ){
+                if ( theRad[i].checked ){
+                    return theRad[i].value;
+                }
+            }
+            return false;
+       }
+       function getTheSelectedItem( sel1 ) {  // Added
+            for( let i=0; i<sel1.length; i++ ){  // Added
+                if ( sel1[1].selected ) {  // Added
+                    return sel1.value;  // Added
+                }  // Added
+            }  // Added
+
+       }
+    </script>
+    <title>Title</title>
+</head>
+<body>
+<form name="myForm">
+    <h2> Pizze Size</h2>
+    Small 8": <input type="radio" name="pSize" value="sm">
+    Medium 10": <input type="radio" name="pSize" value="med">
+    Large 12": <input type="radio" name="pSize" value="lar">
+
+    <br />
+    <h2> Toppings </h2>
+    Pepperoni: <input type="checkbox" name="topping" value="pep">
+    Sausage: <input type="checkbox" name="topping" value="sau">
+    Shrooms: <input type="checkbox" name="topping" value="shroom">
+    PineApple: <input type="checkbox" name="topping" value="pine">
+    <h2> Delivery Options</h2>
+    <select id="delOption" >
+       <option value="pu"> Pick Up </option>
+       <option value="del"> Delivery </option>
+       <option value="inS"> In Store </option>
+    </select>
+    <button type='button' name="myButton" onclick="calcTotal()" > Calc Total </button>
+    <h2> Total Cost </h2>
+    <div id="results"> Your Total Here </div>
+</form>
+
+</body>
+</html>
