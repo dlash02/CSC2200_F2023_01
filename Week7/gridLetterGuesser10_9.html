@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF8">
+    <title>Title</title>
+    <style>
+        #form {
+            display: grid;
+            padding: 1em;
+            background: #f9f9f9;
+            border: 1px solid #c1c1c1;
+            margin: 2rem auto 0 auto;
+            max-width: 600px;
+            padding: 1em;
+        }
+        form input {
+            background: #fff;
+            border: 1px solid #9c9c9c;
+        }
+        form button {
+            background: lightgrey;
+            padding: 0.7em;
+            width: 100%;
+            border: 0;
+        }
+        form button:hover {
+            background: gold;
+        }
+        label {
+            padding: 0.5em 0.5em 0.5em 0;
+        }
+        input {
+            padding: 0.7em;
+            margin-bottom: 0.5rem;
+        }
+        input:focus {
+            outline: 3px solid gold;
+        }
+        @media (min-width: 400px) {
+            form {
+                grid-template-columns: 200px 1fr;
+                grid-gap: 16px;
+            }
+            label {
+                text-align: right;
+                grid-column: 1 / 2;
+            }
+            #results {
+                font-size: 20px;
+                grid-column: 2 / 3;
+            }
+            input, button, #results {
+                grid-column: 2 / 3;
+                position: relative;
+                top: 5px;
+
+            }
+            #header {
+                font-size: 25px;
+                grid-column: 2 / 3;
+            }
+        }
+    </style>
+    <script>
+        let secretWords  = ["beanhead", 'slippery', 'zebra', 'pizza'];
+        let secretWord = "";
+        let showSecretWord  = "";
+        let start  = true;
+        let numWrong = 0;
+        function initializeTheGame() {
+           // Get a secret work
+            // Initialize the screen so far
+            numWrong = 0;
+            showSecretWord  = "";
+            secretWord = "";
+            let nWords = secretWords.length;
+            let min = 0;
+            let index = Math.floor((Math.random() * (nWords-min) + min));
+            secretWord = secretWords[index];
+            for( let i=0; i<secretWord.length; i++){
+                showSecretWord += '*';
+            }
+            showSecretWordSoFar();
+        }
+        function showSecretWordSoFar(){
+            // update display for the words and status;
+            let oStr = `<span style='color:blue'> Word:${showSecretWord}</span>`;
+            oStr += `<br /> <span style='color:red'>N Wrong:${numWrong}</span>`;
+            oStr += `<br /> <span style='color:red'>DBG Word:${secretWord}</span>`;
+            document.getElementById("results").innerHTML = oStr;
+        }
+        function guessIt() {
+            // alert("inside guess It")
+            let l = document.getElementById("letter").value;
+            let res = letterIsGood(l);
+            console.log( 'res='); console.log( res);
+            let oStr = "";
+            if ( !res.isOk ){
+                oStr = res.reason;
+            } else {
+                let idx = secretWord.indexOf(l);
+                if ( idx == -1 ){
+                    numWrong++;
+                    alert( 'it is wrong Letter:' + l + ' idx:' + idx);
+                } else {
+                    alert( 'it is right Letter:' + l + ' idx:' + idx);
+                }
+            }
+        }
+        function letterIsGood( letter ) {
+            let resp = {};
+            resp.isOk = true;
+            resp.reason = null;
+
+            if ( letter.length > 1 ){
+                resp.isOk = false;
+                resp.reason = "Letter is More than 1 character"
+            } else if ( letter.length == 0 ){
+                resp.isOk = false;
+                resp.reason = "Letter is less than 1 character"
+            } //else if ( (/[a-z][A-Z]/).test(letter)) {
+            //     resp.isOk = true;
+            //     resp.reason = "You are a good character!"
+            // } else {
+            //     resp.isOk = false
+            //     resp.reason = "You are a bad character!"
+            // }
+            return resp;
+        }
+    </script>
+</head>
+<body onload="initializeTheGame()">
+<span id="form">
+     <span id="header"> Guess The Word!</span>
+     <label for="letter" class="Letter">Letter:</label>
+     <input id="letter" type="text">
+     <button onClick="guessIt()">Submit</button>
+    <br />
+    <label for="results" class="Results">Results:</label>
+    <span id="results"> results</span>
+</span>
+</body></html>
