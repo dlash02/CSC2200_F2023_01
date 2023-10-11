@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    form {
+      display: grid;
+      padding: 1em;
+      background-color: #f9f9f9;
+      border: 1px solid black;
+      max-width: 90%;
+    }
+    form input {
+      background-color: #fff;
+      border: 1px solid black;
+    }
+    form button {
+      background: lightgrey;
+      padding: .7em;
+      width: 100%;
+      margin-top: 10px;
+    }
+    form button:hover {
+      background: gold;
+    }
+    input:focus {
+      outline: 3px solid gold;
+    }
+    select:focus {
+      outline: 3px solid gold;
+    }
+    @media (min-width: 600px) {
+      form {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 16px;
+      }
+
+      label.one {
+        text-align: right;
+        grid-column: 1/2;
+      }
+
+      input.one {
+        grid-column: 2/3;
+      }
+
+      label.two {
+        text-align: right;
+        grid-column: 3/4;
+      }
+
+      input.two {
+        grid-column: 4/5;
+      }
+
+      button {
+        grid-column: 1/5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h2> Fill in and submit </h2>
+  <form action="http://mysite.com/myprogram" method="get">
+      <label class="one" for="firstName" > FirstName: </label>
+      <input class="one" type="text" id="firstName" >
+
+    <label class="two" for="firstName" > LastName: </label>
+    <input class="two"  type="text" id="lastName" >
+
+    <label class="one" for="age" > Age: </label>
+    <input class="one" type="number" id="age" min="1" max="135" >
+
+    <label class="two"  for="job" > Job: </label>
+    <select class="two"  id="job" size="1" >
+      <option value="1"> Student </option>
+      <option value="2"> Plumber </option>
+      <option value="3"> Electric </option>
+    </select>
+
+    <label class="one" for="email" > Email: </label>
+    <input class="one" type="email" id="email" >
+    <label class="two"  for="comments" > Comments: </label>
+    <textarea class="two" id="comments" rows="5"> Enter your comments </textarea>
+    <button type="submit"> Submit me please!</button>
+  </form>
+</body>
+</html>

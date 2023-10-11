@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<title>Example</title>
+<style>
+    body {
+        display: grid;
+        grid-template-areas:
+                "header header header"
+                "nav nav nav"
+                "article article ads";
+        grid-template-rows: 10% 10% 1fr;
+        grid-template-columns: 1fr 1fr .5fr;
+        grid-gap: 10px;
+        height: 100vh;
+        margin: 0;
+    }
+    header, footer, article, nav, div {
+        padding: 20px;
+        background: gold;
+    }
+    #pageHeader {
+        grid-area: header;
+    }
+    #pageFooter {
+        grid-area: footer;
+    }
+    #mainArticle {
+        grid-area: article;
+    }
+    #mainNav {
+        grid-area: nav;
+    }
+    #siteAds {
+        grid-area: ads;
+    }
+    #img1 {
+        float: left;
+        margin-right: 10px;
+    }
+    #logoTitle {
+        position: relative;
+        top: 10px;
+        left: 140px;
+        font-size: 20px;
+        color: blue;
+    }
+    #mainNav a:hover {
+        background-color: yellowgreen;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+    #mainNav a:active {
+        text-decoration: none;
+    }
+    #mainNav a:visited {
+        text-decoration: none;
+    }
+    #mainNav a:link {
+        text-decoration: none;
+    }
+    #mainNav a {
+        width: 100px;
+        border: 1px solid black;
+        background-color: #00ABE4;
+        padding-left: 10%;
+        margin-left: 5px;
+    }
+</style>
+<body>
+<header id="pageHeader">
+    <img id='img1' src="imgs/logo.png" height="50px">
+    <span id="logoTitle"> Al's Coffee</span>
+</header>
+<article id="mainArticle">
+    <span id="sp1">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet esse
+        </span>
+    <img id='img1' src="imgs/logo.png"  height="100px">
+
+    incidunt laborum laudantium maxime nesciunt quae sint tempore ut, vel?
+    <br />
+    The best part of waking up ... is our coffee
+</article>
+<nav id="mainNav">
+    <span id="Navs"> Main Sites</span>
+    <a class="nav1" href="http://disney.com"> disney </a>
+    <a class="nav1" href="http://aurora.com"> aurora </a>
+    <a class="nav1" href="page2.html"> page2 </a>
+</nav>
+<div id="siteAds">Ads</div>
+</body>
+</html>
