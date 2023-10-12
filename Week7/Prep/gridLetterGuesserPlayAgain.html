@@ -66,7 +66,8 @@
         let showSecretWord  = "";
         let numWrong = 0;
         const MAX_WRONG = 3;
-        function initializeTheGame() {
+        let curImg = '';
+        function initializeTheGame( msg = "") {
             let secretWords  = ["beanhead", 'slippery', 'zebra', 'pizza'];
             // Get a secret work
             // Initialize the screen so far
@@ -80,14 +81,18 @@
             for( let i=0; i<secretWord.length; i++){
                 showSecretWord += '*';
             }
-            updateDisplay();
+            updateDisplay( msg );
         }
-        function updateDisplay( msg = "" ){
+        function updateDisplay( msg = "", img = '' ){
+            alert( msg );
             // update display for the words and status;
             let oStr = `<span style='color:blue'> Word:${showSecretWord}</span>`;
             oStr += `<br /> <span style='color:red'>N Wrong:${numWrong}</span>`;
             oStr += `<br /> <span style='color:red'>DBG Word:${secretWord}</span>`;
             oStr += `<br /> <span style='color:red'>MSG:${msg}</span>`;
+            if ( img != ""){
+                oStr += `<br /> <img src='${img}' alt='hang' width='100px' />`;
+            }
             document.getElementById("results").innerHTML = oStr;
         }
         function guessIt() {
@@ -99,13 +104,14 @@
                 let idx = secretWord.indexOf(l);
                 if ( idx == -1 ){
                     numWrong++;
+                    let img = `imgs/${numWrong}.png`;
                     if ( numWrong >= MAX_WRONG ){
-                        updateDisplay( `It Is Over and you lost:${l} idx:${idx} numWrong:${numWrong}`);
+                        let msg = `It Is Over and you lost:${l} idx:${idx} numWrong:${numWrong} ${playAgain()}`;
+                        updateDisplay( msg, img);
                     } else {
-                        updateDisplay(`it is wrong Letter:${l} idx:${idx} numWrong:${numWrong}`);
+                        let msg = `It is wrong Letter:${l} idx:${idx} numWrong:${numWrong} `;
+                        updateDisplay( msg , img);
                     }
-                    // Add check for u are a loser!
-
                 } else {
                     // alert( 'it is right Letter:' + l + ' idx:' + idx);
                     let showW = "";
@@ -117,10 +123,13 @@
                         }
                     }
                     showSecretWord = showW;
+
                     if ( showSecretWord == secretWord){
-                        updateDisplay( `WINNER! letter:${l} found index:${idx}`);
+                        let img = `imgs/winner.png`;
+                        updateDisplay( `WINNER! letter:${l} found index:${idx} ${playAgain()}`, img);
                     } else {
-                        updateDisplay( `Yes! letter:${l} found index:${idx}`);
+                        let img = `imgs/${numWrong}.png`;
+                        updateDisplay( `Yes! letter:${l} found index:${idx}`, img);
                     }
                     // Add check for winner winner chicken dinner!
                 }
@@ -139,6 +148,9 @@
             }
 
             return msg;
+        }
+        function playAgain() {
+            return `<button type='button' onClick='initializeTheGame()'> Click to play again </button>`
         }
     </script>
 </head>
