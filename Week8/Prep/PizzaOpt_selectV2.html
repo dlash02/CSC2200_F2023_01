@@ -11,9 +11,9 @@
 <form id="myForm" name="myForm">
     <label for="pizzaSize" > Pizza Size: </label>
     <div id="pizzaSize" class="formElem">
-        Small 8": <input type="radio" name="pSize" value="Small" checked>
+        Small 8": <input type="radio" name="pSize" value="Small" >
         Medium 10": <input type="radio" name="pSize" value="Medium">
-        Large 12": <input type="radio" name="pSize" value="Large">
+        Large 12": <input type="radio" name="pSize" value="Large" checked>
     </div>
     <label for="pizzaTopping" > Pizza Toppings: </label>
     <div id="pizzaTopping">
@@ -25,7 +25,7 @@
         </div>
     </div>
     <label for="delOptions" > Delivery Options: </label>
-    <select id="delOptions" class="selOpts" width="1" >
+    <select id="delOptions" class="selOpts" multiple>
        <option value="Pick-Up"> Pick Up </option>
        <option value="Delivery" selected> Delivery </option>
        <option value="In-Store"> In Store </option>

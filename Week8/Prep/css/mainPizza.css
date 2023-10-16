@@ -11,17 +11,7 @@ body {
     max-width: 600px;
     padding: 1em;
 }
-#form input {
-    background: #fff;
-    border: 1px solid #9c9c9c;
-}
-#form button {
-    background: lightgrey;
-    padding: 0.7em;
-    width: 100%;
-    border: 0;
-    margin: 5px;
-}
+
 #form button:hover {
     background: gold;
 }
@@ -44,7 +34,7 @@ input:focus {
 
 }
 @media (min-width: 800px) {
-    #form {
+    #myForm {
         grid-template-columns: 200px 1fr;
         grid-gap: 16px;
     }
