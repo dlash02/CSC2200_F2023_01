@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/questions.js" type="application/javascript" ></script>
+    <title>Title</title>
+</head>
+<body>
+<h2> Scrabble It!</h2>
+<form id="myForm" name="myForm" onLoad="initializeGame()">
+    <label id='main' > Riddle Me This </label>
+    <label id='nQuesitonLabel' for="nQuestions" > Number Of Questions: </label>
+    <select id='nQuestions' class="selOpts" size="1" >
+        <option value="1"> One </option>
+        <option value="2"> Two </option>
+        <option value="3" selected > Three </option>
+        <option value="4"> Four </option>
+    </select>
+    <button type='button' name="myButton" onclick="playGame()" > Start Game </button>
+    <label for="results"> Total Cost: </label>
+    <div id="results" class="formElem resultArea">
+        Results
+    </div>
+</form>
+
+</body>
+</html>
