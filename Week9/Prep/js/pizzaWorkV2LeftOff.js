@@ -1,18 +1,22 @@
-let pizza = new Array();
-pizza['Small'] = 9.99;
-pizza['Medium'] = 10.99;
-pizza['Large'] = 11.99;
+let menu = {
+    'pizza': [
+        {'Small': 9.99},
+        {'Medium': 10.99},
+        {'Large': 11.99}
+    ],
+    'tops': [
+        {'pepperoni': .50},
+        {'sauce': .60},
+        {'mushroom': .40},
+        {'onions': 1.00}
+    ],
+    'del': [
+        {'Pick=Up': 1.0},
+        {'In-Store': 0},
+        {'Delevery': 5.0}
+    ]
+}
 
-let tops = new Array();
-tops['pepperoni'] = .50;
-tops['sauce'] = .60;
-tops['mushroom'] = .40;
-tops['onions'] = 1.00;
-
-let del = [];  // Added
-del['Pick-Up'] = 1.0;  // Added
-del['In-Store'] = 0;  // Added
-del['Delivery'] = 5.00;  // Added
 function calcTotal() {
     alert("validate!");
     let  pSize = document.querySelector('input[type=radio][name=pSize]:checked').value;
@@ -21,7 +25,6 @@ function calcTotal() {
     let toppingCSV = getToppingCSV(toppingObj);
     let tTotal = getToppingTotal(toppingObj)
     let oStr = checkForErrors(delOption, pSize );
-
     if ( oStr == '') {
         oStr = buildOutput(pSize, toppingCSV, tTotal, delOption);
     }
@@ -31,16 +34,16 @@ function calcTotal() {
 function checkForErrors(delOption, pSize, toppingObj ) {
     let oStr  = "";
     let gotError = false;
-    if ( del[delOption] == undefined ) {
+    if ( menu.del[delOption] == undefined ) {
         oStr = "Error Delivery option is not found.";
         gotError = true;
     } else {
         console.log( `option:${delOption} val:${del[delOption]}`);
     }
-    if ( pizza[pSize] == undefined ) {
+    if ( menu.pizza[pSize] == undefined ) {
         oStr += ` Error Pizza Size option is not found: ${pSize}`;
     } else {
-        console.log( `option:${pSize} val:${pizza[pSize]}`);
+        console.log( `option:${pSize} val:${menu.pizza[pSize]}`);
     }
     console.log(`return oStr:${oStr}`)
     return oStr;
@@ -53,10 +56,10 @@ function buildOutput( pizSize, toppingCSV, tTotal,  delOption ){
     });
     let total = 0;
     let oStr = "<table border='1'>";
-    let pizCost = pizza[pizSize];
+    let pizCost = menu.pizza[pizSize];
     oStr += `<tr><th> Pizza</th><th> ${pizSize} </th><th> ${USD.format(pizCost)} </th>`
     oStr += `<tr><th> Toppings</th><th> ${toppingCSV} </th><th> ${USD.format(tTotal)} </th>`
-    let delCost = del[delOption];
+    let delCost = menu.del[delOption];
     oStr += `<tr><th> Delivery </th><th> ${delOption} </th><th> ${USD.format(delCost)} </th>`
     total += pizCost + tTotal + delCost;
     oStr += `<tr><th> Total </th><th>  </th><th> ${USD.format(total)} </th>`
@@ -68,7 +71,7 @@ function getToppingTotal(t) {
     for (i = 0; i < t.length; i++) {
         if (t[i].checked) {
             let v = t[i].value;
-            total += tops[v];
+            total += menu.tops[v];
         }
     }
     return total;
