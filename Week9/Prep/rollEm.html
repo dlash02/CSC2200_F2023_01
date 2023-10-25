@@ -1,0 +1,96 @@
+<!doctype html>
+<title>Example</title>
+<script>
+    let dice = [
+        {
+            'name': 'Die1.PNG',
+            'value': 1
+        }, {
+            'name': 'Die2.PNG',
+            'value': 2
+        },{
+            'name': 'Die3.PNG',
+            'value': 3
+        },{
+            'name': 'Die4.PNG',
+            'value': 4
+        },{
+            'name': 'Die5.PNG',
+            'value': 5
+        },{
+            'name': 'Die6.PNG',
+            'value': 6
+        }
+    ];
+    function startGame() {
+        let res1 = document.getElementById("die1");
+        let res2 = document.getElementById("die2");
+        let resArea = document.getElementById("results");
+        let r1 = Math.floor(Math.random() * 6);  // returns a random integer from 0 to 2
+        let r2 = Math.floor(Math.random() * 6);  // returns a random integer from 0 to 2
+
+        let img1 = dice[r1].name;
+        let val1 = dice[r1].value;
+        let img2 = dice[r2].name;
+        let val2 = dice[r2].value;
+
+        let str1 = "<img src='imgs/" + img1 + "' height='50px' width='50px'>";
+        let str2 = "<img src='imgs/" + img2 + "' height='50px' width='50px'>";
+        res1.innerHTML = str1;
+        res2.innerHTML = str2;
+        let sum  = val1 + val2;
+        let oStr = "<b>" + sum  + "</b>";
+        alert( "OStrong:" + oStr );
+        resArea.innerHTML = oStr;
+    }
+</script>
+<style>
+    body {
+        display: grid;
+        grid-template-areas:
+                "header header header"
+                "nav article ads"
+                "footer footer footer";
+        grid-template-rows: 60px 1fr 60px;
+        grid-template-columns: 20% 50% 20%;
+        grid-gap: 10px;
+        height: 100vh;
+        margin: 0;
+        text-align: center;
+    }
+    header, footer, article, nav, div {
+        padding: 25px;
+        background: gold;
+    }
+    #pageHeader {
+        grid-area: header;
+        font-size:20px;
+    }
+    #pageFooter {
+        grid-area: footer;
+    }
+    #mainArticle {
+        grid-area: article;
+    }
+    #mainNav {
+        grid-area: nav;
+    }
+    #siteAds {
+        grid-area: ads;
+    }
+    #die1 {
+        display: inline;
+    }
+</style>
+<body>
+<header id="pageHeader">Dice Game (sort of)</header>
+<article id="mainArticle">
+    <div id="die1"> Die1</div>
+    <div id="die2">Die 2</div>
+    <div id="results">Results</div>
+</article>
+<nav id="mainNav"><button id="startButton" onClick="startGame()"> Start </button></nav>
+<div id="siteAds">ads</div>
+<footer id="pageFooter"> Page Footer</footer>
+</body>
+</html>
