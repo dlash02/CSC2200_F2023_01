@@ -2,19 +2,21 @@ let menu = {
     'pizza' : {
         'Small' : 9.99,
         'Medium' : 10.99,
-        'Large' : 11.99
+        'Large' : 11.99,
+        'Extra Large' : 15.99
     },
     'tops' : {
-        'pepperoni' :  .50,
-        'sauce' : .60,
-        'mushroom' : .40,
-        'onions' :  1.00,
-        'peppers' :  1.00
+        'Pepperoni' :  .50,
+        'Sauce' : .60,
+        'Mushrooms' : .40,
+        'Onions' :  1.00
+        // 'peppers' :  1.00
     },
     'del' : {
         'Pick-Up' : 1.0,
         'In-Store' : 0,
-        'Delivery' :  5.0
+        'Delivery' :  5.0,
+        'Door Dash' :  50.0
     }
 }
 const MAX_COMMENTS = 8;
@@ -105,16 +107,42 @@ function countChars(){
 function updatePage() {
     document.getElementById("maxMsg").innerText = `Max Chars:${MAX_COMMENTS}`;
 
-    updatePizzaDelivery();
+    updateToppings();
 
+    updateDelivery();
 
+    updatePizzaSize();
 }
 function updateToppings(){
     let topOpt = document.getElementById("topOpt");
     let oStr = ""
-    // let topKeys = Object.keys(menu.tops)
+    let topKeys = Object.keys(menu.tops);
     for( let i=0; i <topKeys.length; i++ ){
         oStr += `${topKeys[i]} <input type="checkbox" name="topping" value="${topKeys[i]}">`;
     }
     topOpt.innerHTML = oStr;
+}
+function updateDelivery(){
+    let delOpt = document.getElementById("delOptions");
+    let oStr = ""
+    let delKeys = Object.keys(menu.del);
+    let first = true;
+    for( let i=0; i <delKeys.length; i++ ){
+        let checked="";
+        if ( first ) { checked='selected'; first=false; }
+        oStr += `<option value="${delKeys[i]}" ${checked} > ${delKeys[i]} </option>`;
+    }
+    delOpt.innerHTML = oStr;
+}
+function updatePizzaSize(){
+    let pizzaOpt = document.getElementById("pizzaSize");
+    let oStr = ""
+    let pizzaKeys = Object.keys(menu.pizza);
+    let first = true;
+    for( let i=0; i <pizzaKeys.length; i++ ){
+        let checked="";
+        if ( first ) { checked='checked'; first=false; }
+        oStr += `${pizzaKeys[i]} <input type="radio" name="pSize" value="${pizzaKeys[i]}" ${checked} > `;
+    }
+    pizzaOpt.innerHTML = oStr;
 }
