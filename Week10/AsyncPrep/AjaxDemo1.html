@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script
+          src="https://code.jquery.com/jquery-3.6.0.min.js"
+          integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+          crossorigin="anonymous"></script>
+  <script>
+    //
+    $(document).ready(function(){
+      $("#myButton").click(function(){
+        //let URL = 'data4.php';
+        let URL = "http://45.55.136.114/~dlash/CSC2200/footballBasic.php";
+        alert( "Loading URL=" +URL );
+        $.get( URL, function(data,status){
+          alert("Data: " + data + "\nStatus: " + status);
+          let toks = data.split(',');
+          let oStr = "<ol>"
+          for ( i=0; i<toks.length; i++ ){
+            oStr += "<li>" + toks[i] + "</li>"
+          }
+          $("#results").append( oStr );
+        });
+      });
+    });
+    //
+  </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="jumbotron text-center">
+    <h1>Football Info Site</h1>
+  </div>
+  <div class="row ">
+    <div class="col-sm-6  bg-light">
+      <h4> Let JQuery Change this page</h4>
+      <button id="myButton"> Load external Content </button>
+      <span id="results"> results here</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

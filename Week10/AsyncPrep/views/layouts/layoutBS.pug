@@ -1,0 +1,36 @@
+head
+    title  My App
+    link(href='/css/bootstrap.css' rel='stylesheet')
+    script(src='/js/bootstrap.js' type='application/javascript')
+// Navigation
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.static-top
+    .container
+        a.navbar-brand(href='#')
+            img(src='imgs/dilbert.png' alt='My Logo' height='50')
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ms-auto
+                if from == 'showProducts'
+                    li.nav-item
+                        a.nav-link.active(aria-current='page' href='/showProducts') Show
+                    li.nav-item
+                        a.nav-link(href='/add-product') Add-Product
+                    li.nav-item
+                        a.nav-link(href='/showAdmin') Show Admin
+                else if from == 'addProduct'
+                    li.nav-item
+                        a.nav-link(aria-current='page' href='/showProducts') Show
+                    li.nav-item
+                        a.nav-link.active(href='/add-product') Add-Product
+                    li.nav-item
+                        a.nav-link(href='/showAdmin') Show Admin
+                else
+                    li.nav-item
+                        a.nav-link(aria-current='page' href='/showProducts') Show
+                    li.nav-item
+                        a.nav-link(href='/add-product') Add-Product
+                    li.nav-item
+                        a.nav-link.active(href='/showAdmin') Show Admin
+
+// Page Content

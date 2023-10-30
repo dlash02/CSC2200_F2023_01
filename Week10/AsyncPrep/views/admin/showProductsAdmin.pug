@@ -1,0 +1,29 @@
+include ../layouts/layoutBS
+.container
+    h1.mt-4
+    h1.mt-4 #{title}
+    p Admin Side
+
+    if products.length == 0
+        h2 Sorry no current products
+    else
+        table.table.table-striped
+            thead
+                tr
+                    th(scope='col') Title
+                    th(scope='col') Author
+                    th(scope='col') Price
+            tbody
+                each p in products
+                    tr
+                       td= p.title
+                       td= p.author
+                       td= p.price
+                       td
+                           form( method='get' action='editItem/' + p.id )
+                               button( type='submit' class='btn btn-primary') Edit
+                       td
+                           form( method='get' action='deleteItem/' + p.id )
+                               button( type='submit' class='btn btn-primary') Delete
+    form( method='get' action='/add-product' )
+        button( type='submit' class='btn btn-primary') Add Record

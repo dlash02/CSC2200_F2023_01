@@ -1,0 +1,31 @@
+doctype html
+head
+    meta(charset='UTF-8')
+    title Title
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    script(src='js/boostrap.bundle.js' rel='stylesheet')
+// Navigation
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.static-top
+    .container
+        a.navbar-brand(href='#')
+            img(src='https://placeholder.pics/svg/150x50/888888/EEE/Logo' alt='...' height='36')
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.ms-auto
+                li.nav-item
+                    a.nav-link.active(aria-current='page' href='#') Home
+                li.nav-item
+                    a.nav-link(href='#') Link
+                li.nav-item.dropdown
+                    a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-bs-toggle='dropdown' aria-expanded='false')
+                        | Dropdown
+                    ul.dropdown-menu.dropdown-menu-end(aria-labelledby='navbarDropdown')
+                        li
+                            a.dropdown-item(href='#') Action
+                        li
+                            a.dropdown-item(href='#') Another action
+                        li
+                            hr.dropdown-divider
+                        li
+                            a.dropdown-item(href='#') Something else her

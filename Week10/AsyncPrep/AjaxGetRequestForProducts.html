@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    //
+    function handleClick(){
+      // let  URL = "http://45.55.136.114/~dlash/CSC2200/footballBasic.php";
+      // let  URL = "http://45.55.136.114/~dlash/CSC2200/footballBasic.php";
+      let  URL = "http://localhost:3028/feed/products";
+      fetch(URL)
+              .then(function(response) {
+                if (!response.ok) {
+                  throw new Error("HTTP error, status = " + response.status);
+                }
+                return response.json();
+              })
+              .then(function(data) {
+                alert("Data: " + data + "\nStatus: 200");
+                oStr = "Got Data "
+                var resultsElement = document.getElementById("results");
+                resultsElement.innerHTML += oStr;
+              })
+              .catch(function(error) {
+                console.error("Fetch error:", error);
+              });
+    }
+  </script>
+
+</head>
+<body>
+
+<div class="container-fluid">
+  <div class="jumbotron text-center">
+    <h1>My Products </h1>
+  </div>
+  <div class="row ">
+    <div class="col-sm-6  bg-light">
+      <h4> Best Selling Titles </h4>
+      <button id="myButton" onclick="handleClick()"> Load external Content </button>
+      <span id="results"> results here</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

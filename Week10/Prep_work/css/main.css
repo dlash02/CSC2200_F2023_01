@@ -1,0 +1,32 @@
+#grid-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 100px 400px;
+}
+header {
+    display: inline;
+    background-color: yellow;
+    list-style:none;
+    grid-column: 1/4;
+    text-align: center;
+}
+.Left {
+    background-color:palegoldenrod;
+    border:1px solid black;
+    padding-left: 20px;
+}
+.Center {
+    background-color:palegoldenrod;
+    border:1px solid black;
+    padding-left: 20px;
+}
+.Right {
+    background-color:palegoldenrod;
+    border:1px solid black;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+#cards {
+    padding-left: 20px;
+}
+
