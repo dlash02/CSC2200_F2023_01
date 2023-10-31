@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <excludedPredefinedLibrary name="CSC2200_F2023_01/Week10/AsyncPrep/node_modules" />
+    <excludedPredefinedLibrary name="CSC2200_F2023_01/Week10/AsyncPrepV2/node_modules" />
+    <excludedPredefinedLibrary name="CSC2200_F2023_01/Week10/reactPrep/my-react-app/node_modules" />
+  </component>
+</project>

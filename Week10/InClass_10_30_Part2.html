@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const superHeros = [
+            {
+                name: "Hulk",
+                age: 145,
+                powers: ['Strong', 'Jumps Good', 'Anger', 'Smashes'],
+                secretName: {
+                    first: 'Bruce',
+                    last: "Banner",
+                    occupations: ['Scientist', 'None']
+                }
+            },
+            {
+                name: "Spiderman",
+                age: 17,
+                powers: ['Strong', 'Jumps Good', 'Webs', 'Spider sense'],
+                secretName: {
+                    first: 'Peter',
+                    last: "Parker",
+                    occupations: ['Student', 'None']
+                }
+            }
+        ]
+        function doMyJs() {
+            let res = document.getElementById("results");
+            let oStr = `Name:${superHeros[0].name}`;
+            oStr += `Name2:${superHeros[1].name}`;
+            for( let i=0; i<superHeros.length; i++){
+                oStr += `<br /> age:${superHeros[i].age}`;
+            }
+            // oStr += "<ol>"
+            // for( let i=0; i<superHero.powers.length; i++){
+            //     oStr += `<li> ${superHero.powers[i]} </li>`
+            // }
+            // oStr += "</ol>"
+            // oStr += " And Past Occupations are: <ol>";
+            // let sn = superHero.secretName.occupations;
+            // for( let i=0; i<sn.length; i++){
+            //     oStr += `<li> ${sn[i]} </li>`
+            // }
+            // oStr += "</ol>"
+            res.innerHTML = oStr;
+        }
+    </script>
+</head>
+<body onLoad="doMyJs()">
+    <h2> A Look at JS Objects</h2>
+    <span id="results"> </span>
+</body>
+</html>

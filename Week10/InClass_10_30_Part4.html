@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function SuperHero( name ){
+            this.name = name;
+            this.greeting = function( color ){
+                alert(`I am ${color} and I amd ${this.name}`)
+            }
+        }
+        function doMyJs() {
+            let res = document.getElementById("results");
+            let sHero = new SuperHero("Hulk");
+            sHero.greeting("green");
+            // let oStr = `Name:${superHeros[0].name}`;
+            // oStr += `Name2:${superHeros[1].name}`;
+            // for( let i=0; i<superHeros.length; i++){
+            //     oStr += `<br /> age:${superHeros[i].age}`;
+            //     superHeros[i].greeting( "red");
+            // }
+            //
+            // res.innerHTML = oStr;
+        }
+    </script>
+</head>
+<body onLoad="doMyJs()">
+    <h2> A Look at JS Objects</h2>
+    <span id="results"> </span>
+</body>
+</html>

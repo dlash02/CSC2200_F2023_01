@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const superHero = {
+            name: "Hulk",
+            age: 145,
+        }
+        function doMyJs() {
+            let res = document.getElementById("results");
+            let uInput = prompt("What would you like to see->");
+             if ( superHero.hasOwnProperty( uInput )){
+                 alert( `Hero has ${uInput} with value :${superHero[uInput]}`);
+             } else {
+                 alert( `No Idea what you are talking about with ${uInput}`);
+
+             }
+            res.innerHTML = oStr;
+        }
+    </script>
+</head>
+<body onLoad="doMyJs()">
+    <h2> A Look at JS Objects</h2>
+    <span id="results"> </span>
+</body>
+</html>

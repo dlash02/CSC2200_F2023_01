@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function SuperHero( name, age, powers){
+            this.name = name;
+            this.age = age;
+            this.powers = powers;
+            this.greeting = function( color ){
+                alert(`I am ${color} and I amd ${this.name} I have ${this.powers.length} abilities`)
+            }
+        }
+        function doMyJs() {
+            let res = document.getElementById("results");
+            let hulk = new SuperHero("Hulk", 136, ["Jumps", "Smashes", 'Anger']);
+            hulk.greeting("green");
+
+            let sMan = new SuperHero("Siperman", 16, ["Webs", "SpiderSense"]);
+            sMan.greeting("red");
+
+            let superHeros = [ hulk, sMan ];
+            for( let i=0; i<superHeros.length; i++ ){
+                superHeros[i].greeting("Blue");
+            }
+        }
+    </script>
+</head>
+<body onLoad="doMyJs()">
+    <h2> A Look at JS Objects</h2>
+    <span id="results"> </span>
+</body>
+</html>
