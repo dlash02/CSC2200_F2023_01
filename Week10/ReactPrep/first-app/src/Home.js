@@ -7,10 +7,7 @@ const Home = () => {
                 backgroundColor : 'yellow',
                 borderRadius : '8px'
             }}> An Inline specification </h2>
-            <table className='striped'>
-                <tr><th> Title</th><th> Author</th></tr>
-                <tr><td> The Fellowship of the ring </td><td> J. R Tolkien </td></tr>
-            </table>
+
         </nav>
     );
 }

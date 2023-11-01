@@ -1,3 +1,5 @@
+import Nav from 'react-bootstrap/Nav';
+
 const Navbar = () => {
     return (
         <nav className="navbar">
