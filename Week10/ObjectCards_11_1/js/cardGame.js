@@ -42,7 +42,6 @@ let deck = {
     ],
     dealtCards : 0,
     getCard : function( ){
-
         let gotGoodCard = false;
         while ( !gotGoodCard){
             let rNum = Math.floor( Math.random() * deck.cards.length );
