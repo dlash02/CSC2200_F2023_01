@@ -26,9 +26,7 @@ function App() {
                 <Col xs sm="6">
                     <p> I go to <a href={mySchool}> My University </a></p>
                 </Col>
-                <Col>
-                <Button variant="primary">Primary</Button>
-                </Col>
+
             </Row>
             <Row>
                 <Col sm={2}>
