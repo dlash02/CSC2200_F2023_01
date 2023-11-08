@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Slides and Bombs</title>
+  <meta charset="utf-8">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/gamePlay.js" type="application/javascript"></script>
+  <script src="https://kit.fontawesome.com/9dbf1e34ab.js" crossorigin="anonymous">
+
+  </script>
+</head>
+<body onload="loadGame()">
+<div id="grid-container">
+  <header>
+    <h2> Slides and Bombs! </h2>
+  </header>
+  <div class="Left">
+    <h2> Start the game</h2>
+    <button type="button" id='btn1' class="btn btn-primary" onClick="takeTurn();"> Roll Die </button>
+    <button type="button" id='btn2' class="btn btn-primary" style='display: none' onClick="resetGame();"> Reset Game </button>
+    Angle
+    <i class="fas fa-dragon" style="font-size:18px;color:blue;margin-left: 5px;font-weight: 900"></i>
+    <br /> Font
+    <i class="fas fa-bomb" style="font-size:18px;color:orangered;margin-left: 5px"></i>
+    <i class="fas fa-solid fa-forward" style="font-size:12px;color:green;margin-left: 1px;font-weight: 900"></i>
+    <i class="fas fa-solid fa-dice" style="font-size:12px;color:blue;margin-left: 1px;font-weight: 900"></i>
+    <i class="fas fa-dungeon" style="font-size:12px;color:blue;margin-left: 1px;font-weight: 900"></i>
+    angle2: <i class="fas fa-angles-right" style="font-size:18px;color:dodgerblue;margin-left: 1px;font-weight: 900"></i>
+    <i class="fas fa-solid fa-chess-knight"></i>
+    <i class="fas fa-solid fa-ghost" style="font-size:18px;color:darkgreen;margin-left: 1px;font-weight: 900"></i>
+    <i class="fas fa-solid fa-chess-rook" style="font-size:18px;color:orange;margin-left: 1px;font-weight: 900"></i>
+    <div id="dieRoll"> Die Area </div>
+  </div>
+  <div class="Right">
+    <span id="Game"> Game Area </span>
+
+    <table  class="table" id="table1">
+    </table>
+  </div>
+  <div id="winContainer" >
+    <div id="winner" class="text-center" style="display: none; position: absolute">
+      winner
+    </div>
+</div>
+</body>
+</html>

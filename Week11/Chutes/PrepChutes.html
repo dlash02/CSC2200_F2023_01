@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <style>
+    .navbar-custom {
+      background-color: #98bf21;
+      height: 120px;
+    }
+    .nav-link {
+      color:blue !important
+    }
+    .square {
+         height: 40px;
+         width: 40px;
+         border: solid cornflowerblue;
+      }
+
+  </style>
+  <script>
+    let diceRoll = {
+      dice : [
+        {'img' : 'Die1.PNG', 'value' : 1},
+        {'img' : 'Die2.PNG', 'value' : 2},
+        {'img' : 'Die3.PNG', 'value' : 3},
+        {'img' : 'Die4.PNG', 'value' : 4},
+        {'img' : 'Die5.PNG', 'value' : 5},
+        {'img' : 'Die6.PNG', 'value' : 6},
+      ],
+      rollTotal : 0,
+      rollEm : function () {
+        this.rollTotal = 0;
+        let rand = Math.floor(Math.random() * diceRoll.dice.length);
+        let die = diceRoll.dice[rand];
+
+        return die;
+      }
+    }
+    let game = {
+       gameState: 'User',
+       myBoard :
+         [
+                 [  null, 'showl',null,'showc',null, 'showl',null,null,null,null],
+                 [  null, 'showl', null,'showc',null, 'showl',null,null,null,null],
+                 [  null, 'showl',null, 'showc',null, 'showl',null,null,null,null],
+                 [  null, 'showl',null, 'showc',null, 'showl',null,null,null,null],
+                 [  null, null,   null,   null, null, 'showl',null,null,null,null],
+                 [  null, null,   null,   null,  null,    null,null,null,null,null],
+                 [  null, null,   null,   null,  null,   null, null,null,null,null],
+                 [  null, null,null,null,  null, null,null,null,null,null],
+                 [  null, null,null,null,  null, null,null,null,null,null],
+      ],
+       ladders : [
+         { startCol : 1, startRow : 3, endCol: 1, endRow : 0 },
+         { startCol : 5, startRow : 4, endCol: 5, endRow : 0 },
+       ], slides : [
+           { startCol: 3, startRow: 0, endCol: 3, endRow: 3 },
+        ],
+        token1 : {
+           icon: "<span style='color:red' id='token1'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-apple\" viewBox=\"0 0 16 16\">\n  <path d=\"M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z\"/>\n  <path d=\"M11.182.008C11.148-.03 9.923.023 8.857 1.18c-1.066 1.156-.902 2.482-.878 2.516.024.034 1.52.087 2.475-1.258.955-1.345.762-2.391.728-2.43Zm3.314 11.733c-.048-.096-2.325-1.234-2.113-3.422.212-2.189 1.675-2.789 1.698-2.854.023-.065-.597-.79-1.254-1.157a3.692 3.692 0 0 0-1.563-.434c-.108-.003-.483-.095-1.254.116-.508.139-1.653.589-1.968.607-.316.018-1.256-.522-2.267-.665-.647-.125-1.333.131-1.824.328-.49.196-1.422.754-2.074 2.237-.652 1.482-.311 3.83-.067 4.56.244.729.625 1.924 1.273 2.796.576.984 1.34 1.667 1.659 1.899.319.232 1.219.386 1.843.067.502-.308 1.408-.485 1.766-.472.357.013 1.061.154 1.782.539.571.197 1.111.115 1.652-.105.541-.221 1.324-1.059 2.238-2.758.347-.79.505-1.217.473-1.282Z\"/>\n</svg></span>",
+          row : 8,
+          col : 7
+        }, token2 : {
+           row : 0,
+           col : 0,
+           icon : "<span style='color:green'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-boombox\" viewBox=\"0 0 16 16\">\n" +
+                   "  <path d=\"M2.5 5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Zm2 0a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Zm7.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Zm1.5.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Zm-7-1a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3Zm5.5 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z\"/>\n" +
+                   "  <path d=\"M11.5 13a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Zm0-1a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3ZM5 10.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0Z\"/>\n" +
+                   "  <path d=\"M7 10.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-1 0a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z\"/>\n" +
+                   "  <path d=\"M14 0a.5.5 0 0 1 .5.5V2h.5a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12.5V.5A.5.5 0 0 1 14 0ZM1 3v3h14V3H1Zm14 4H1v7h14V7Z\"/>\n" +
+                   "</svg></span>"
+        }, gotToken : function( row, col) {
+           let retStr = "";
+           if ( this.token1.row == row && this.token1.col == col ){
+             retStr += this.token1.icon;
+           }
+          if ( this.token2.row == row && this.token2.col == col ){
+            retStr += this.token2.icon;
+          }
+          return retStr;
+        }, ladder : {
+           'icon' : "<span style='color:blue'><svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-ladder\" viewBox=\"0 0 16 16\">\n" +
+                   "  <path d=\"M4.5 1a.5.5 0 0 1 .5.5V2h6v-.5a.5.5 0 0 1 1 0v14a.5.5 0 0 1-1 0V15H5v.5a.5.5 0 0 1-1 0v-14a.5.5 0 0 1 .5-.5zM5 14h6v-2H5v2zm0-3h6V9H5v2zm0-3h6V6H5v2zm0-3h6V3H5v2z\"/>\n" +
+                   "</svg></span>"
+        }, moveToken( theToken, roll ){
+             alert( "move1");
+           let v = roll.value;
+           let nInRow = 10;
+           let c = theToken.col;
+
+           let r = theToken.row;
+        if ( (c+v) > nInRow-1){
+             r += 1;
+             let Nc = c%nInRow;
+             c = (v+c)%nInRow;
+           } else {
+             c = c + v;
+           }
+           let ret = this.gotSlide( c, r, );
+           if ( ret != null ){
+             alert( "Time to slide! col rCol:"+ ret.endCol );
+             theToken.col = ret.endCol;
+             theToken.row = ret.endRow;
+           } else {
+             alert( "No Slide");
+             theToken.col = c;
+             theToken.row = r;
+           }
+        ret = this.gotLadder( c, r, );
+        if ( ret != null ){
+          alert( "Time to climb! col rCol:"+ ret.endCol );
+          theToken.col = ret.endCol;
+          theToken.row = ret.endRow;
+        } else {
+          alert( "No ladder");
+          theToken.col = c;
+          theToken.row = r;
+        }
+        }, gotSlide( col, row ){
+         for( let i=0; i<this.slides.length; i++ ) {
+           console.log( `checkSLide Col:${col} row:${row} VS  ECol:${this.slides[i].startCol} and Row:${this.slides[i].endRow}`)
+             if ( this.slides[i].startCol == col && this.slides[i].startRow == row ) {
+                      return this.slides[i];
+              }
+         }
+         return  null;
+      }, gotLadder( col, row ){
+        for( let i=0; i<this.ladders.length; i++ ) {
+          console.log( `checkSLide Col:${col} row:${row} VS  ECol:${this.ladders[i].startCol} and Row:${this.ladders[i].endRow}`)
+          if ( this.ladders[i].startCol == col && this.ladders[i].startRow == row ) {
+            return this.ladders[i];
+          }
+        }
+        return  null;
+      }, gameOver( tok ){
+         let lastRow = game.myBoard.length-1;
+         if ( tok.row != lastRow ){
+           return false;
+         } else {
+           if ( tok.col >= game.myBoard[lastRow].length-1){
+             return true;
+           }
+         }
+      }, winner( tok ) {
+         document.getElementById("winner").innerHTML = tok.icon + "WINNER WINNER!" + tok.icon;
+         document.getElementById("winner").style.display = 'block';
+         document.getElementById("winContainer").style.height='100px';
+        document.getElementById("btn1").style.display = 'none';
+        document.getElementById("btn2").style.display = 'block';
+
+
+        let elem = document.getElementById("winner");
+        let id = 'winner';
+         let pos = 0;
+        clearInterval(id);
+        idx = setInterval(frame, 5);
+        function frame() {
+          if (pos > 1000) {
+            pos = 0;
+          } else {
+            pos++;
+            //elem.style.top = pos + 'px';
+            // alert( "Did it move? ")
+            elem.style.left = pos + 'px';
+          }
+        }
+      }
+    }
+    let user = {
+      name : "",
+      bet : 0,
+      winnings: 0,
+      numberHands : 0
+    }
+    function rollDie() {
+      let roll = diceRoll.rollEm();
+      roll.value = 1;
+      let oStr = `<img src='imgs/${roll.img}' height="20px" width="20px">`
+      if ( game.gameState == 'User') {
+        game.moveToken(game.token1, roll);
+          if ( game.gameOver(game.token1)) {
+            alert("The game is overs 1 wins");
+            game.winner( game.token1);
+          } else {
+          document.getElementById("dieRoll").innerHTML = oStr;
+          document.getElementById("btn1").innerText = "Click to roll Computer";
+          game.gameState = 'Computer';
+          }
+          showBoard();
+      } else if ( game.gameState == 'Computer') {
+        game.moveToken(game.token2, roll);
+        if ( game.gameOver(game.token2)){
+          alert("The game is overs 2 wins");
+        } else {
+          document.getElementById("dieRoll").innerHTML = oStr;
+          document.getElementById("btn1").innerText = "Click to Roll User";
+          game.gameState = 'User';
+        }
+        showBoard();
+      } else {
+        alert("Error illegal game state = " +game.gameState);
+      }
+    }
+    function resetTheGame() {
+      alert("reset");
+      document.getElementById("btn1").innerText = "Click to Roll User";
+      document.getElementById("btn2").style.display = 'none';
+      document.getElementById("btn1").style.display = 'block';
+      // document.getElementById("btn1").style.display = 'none';
+      // document.getElementById("btn2").style.display = 'block';
+      document.getElementById("winContainer").style.height='0px';
+      let elem = document.getElementById("winner");
+      let id = 'winner';
+      document.getElementById("winner").style.display = 'none';
+
+      clearInterval(id);
+      game.token2.col = 0;
+      game.token2.row = 0;
+      game.token1.row = 0;
+      game.token1.col = 0;
+      alert();
+      showBoard();
+
+    }
+    function showBoard() {
+         let tRow = " ";
+         for ( let i=0; i<game.myBoard.length; i++ ) {
+           let row = game.myBoard[i];
+           tRow += `<tr id='R${i}'>` ;
+           for (let j = 0; j < row.length; j++) {
+               let tokStr = game.gotToken(i, j);
+               if ( tokStr != ""){
+                 tRow += `<td id="${i}${j}" class='square'> ${tokStr} </td>`;
+               } else {
+                 let item = game.myBoard[i][j];
+                 if (item != null) {
+                   if (item == 'showl') {
+                     tRow += `<td id="${i}${j}" class='square'> ${game.ladder.icon}</td>`;
+                   } else {
+                     tRow += `<td id="${i}${j}" class='square'> <img id='slider' src="imgs/slide.png" height="20px" width="20px"> </td>`;
+                   }
+                 } else {
+                   tRow += `<td id="${i}${j}" class='square'> </td>`;
+                 }
+               }
+           }
+           tRow += "</tr>";
+         }
+         document.getElementById("table1").innerHTML = tRow;
+       }
+  </script>
+</head>
+<body onload="showBoard()">
+<nav class="navbar navbar-expand-sm navbar-custom navbar-light">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="#">Active</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+
+
+  </div>
+</nav>
+<div id="winContainer" style="height: 0px; width: 200px">
+<div id="winner" class="text-center" style="display: none; position: absolute">winner </div>
+</div>
+
+<div class="row">
+  <div class=" col-sm-3" style="background-color:palegoldenrod; border:1px solid black;">
+    <h2> Start the game</h2>
+
+    <button type="button" id='btn1' class="btn btn-primary" onClick="rollDie();"> Roll Die </button>
+    <button type="button" id='btn2' style='display:none' class="btn btn-primary" onClick="resetTheGame();"> Play Again </button>
+
+    <span id="dieRoll"> Die Area </span>
+  </div>
+  <div class=" col-sm-9" style="background-color:palegoldenrod; border:1px solid black;">
+    <span id="Game"> Game Area </span>
+    <table  class="table" id="table1">
+    </table>
+  </div>
+</div>
+</body>
+</html>

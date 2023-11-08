@@ -73,15 +73,10 @@ let deck = {
         while ( !gotGoodCard ){
             let rNum = Math.floor( Math.random() * deck.cards.length );
             card = deck.cards[rNum];
-            console.log( `rNum:${rNum}`);
-            console.log( "looping hand->"); console.log( hand );
-            console.log( "looping deck->"); console.log( deck.cards );
             if ( !card.dealt ){
                 card.dealt = true;
                 // this.dealtCards.set( card.img, card);   // does not work
                 this.dealtCards += 1;
-                console.log( "RETURNDeck->"); console.log( this.cards );
-                console.log( "RETURN-> Card="); console.log( card );
                 return card;
             } else if ( this.dealtCards == deck.cards.length ){
                 //ToDo: Fix this
@@ -95,9 +90,6 @@ let deck = {
                     }
                 }
                 alert( `DOne -> dealtCards=${this.dealtCards} `);
-                console.log( "Deck->"); console.log( this.cards );
-                // Dont return ... just let it get the next card
-                // return null;
             }
         }
         console.log( "NUL-> Card="); console.log( card );

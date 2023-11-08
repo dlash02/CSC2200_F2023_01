@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cards For u!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/main.css" rel="stylesheet">
+  <script src="js/cardGame.js"></script>
+</head>
+<body>
+<div id="grid-container">
+  <header>
+     <h2> Cards 4 U</h2>
+  </header>
+  <div class="Left">
+    <h2> Place your bet</h2>
+    <br />
+    Bet <input type="text" name="bet" id="uBet" />
+    <button type="button" class="btn btn-primary" onClick="startGame();">Bet</button>
+    <div id="betMsg"> </div>
+  </div>
+  <div class="Center">
+    <div id="Cards"> Card Area</div>
+  </div>
+  <div class="Right">
+    <span id="Results"> Results Area</span>
+  </div>
+</div>
+</body>
+</html>

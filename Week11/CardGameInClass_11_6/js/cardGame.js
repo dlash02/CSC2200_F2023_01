@@ -24,8 +24,8 @@ let deck = {
         {'img': '6H.png', 'value': 6, suit: 'hearts', 'dealt': false},
         {'img': '6D.png', 'value': 6, suit: 'diamonds', 'dealt': false},
         {'img': '6C.png', 'value': 6, suit: 'clubs', 'dealt': false},
-
-        {'img': '7s', 'dealt': false},
+        // //
+        {'img': '7S.png', 'value': 7, suit: 'spades', 'dealt': false},
         {'img': '7H.png', 'value': 7, suit: 'hearts', 'dealt': false},
         {'img': '7D.png', 'value': 7, suit: 'diamonds', 'dealt': false},
         {'img': '7C.png', 'value': 7, suit: 'clubs', 'dealt': false},
@@ -71,8 +71,17 @@ let UI = {
         } else {
             errorMsg = `<span style='color:Blue'>  Bet: ${bet} </span>`;
         }
+        // User.bet = bet;
         document.getElementById( betDisId).innerHTML = errorMsg;
-        return gotError;
+        // let ret = {
+        //     bet : bet,
+        //     error : gotError
+        // }
+        // // return ret;
+        return  {
+            bet : bet,
+            error : gotError
+        }
     },
     displayHand : function ( hand, id ) {
         let resObj = document.getElementById( id  );
@@ -82,15 +91,39 @@ let UI = {
             oStr += `<img class='cardImg' src='imgs/${cImg}'  alt='Card' />`;
         }
         resObj.innerHTML = oStr;
+    },
+    displayResult( id, msg ){
+        document.getElementById(id).innerHTML = msg;
     }
  }
  let User = {
     hand: [],
      total: 0,
-     bet: 0
+     bet: 0,
+     winnings: 0
 }
 let CardGame = {
+    Payouts : new Map ( [
+       ['2OfKind', 1.25 ],
+       ['3OfKind', 1.5 ],
+    ]),
     NumCards: 5,
+    checkHandForWinner( hand ){
+        // let winType = 'None';
+        let ret = {
+            PayOut: 0,
+            WinType: 'None'
+        }
+        if ( CardGame.gotPair( User.hand )){
+            ret.WinType = '2OfKind';
+            ret.PayOut = this.Payouts.get( ret.WinType );
+        }
+        if( CardGame.got3OfKind( User.hand )) {
+            ret.WinType = '3OfKind';
+            ret.PayOut = this.Payouts.get( ret.WinType );
+        }
+        return ret;
+    },
     setHand : function() {
         let hand = [];
         for( let i=0; i<this.NumCards; i++){
@@ -111,23 +144,43 @@ let CardGame = {
         }
         return false;
     },
+    got3OfKind : function ( hand ){
+        let valueHash = new Map();
+        for( let i=0; i<hand.length; i++ ){
+            let cVal = hand[i].value;
+            console.log( `card:${cVal}`);
+            if ( valueHash.get( cVal ) == undefined){
+                valueHash.set( cVal, 1);
+            } else if ( valueHash.get( cVal) == 2) {
+                return true;
+            } else {
+                let eVal = valueHash.get( cVal );
+                valueHash.set( cVal, ( eVal + 1));
+                // valueHash.set( cVal, (valueHash.get( cVal ) + 1));
+            }
+        }
+        return false;
+    }
 }
 
 function startGame() {
     User.hand = [];
-    if ( !UI.setBet( "uBet", "Results") ) {
+     let r = UI.setBet( "uBet", "Results");
+    if (   !r.error ) {
+        User.bet = r.bet;
         User.hand = CardGame.setHand();
         let id = "Cards"
         UI.displayHand( User.hand, id );
-        if ( CardGame.gotPair( User.hand )){
-            alert("Got Pair")
+        let winnerRes = CardGame.checkHandForWinner(User.hand);
+        let msg = "";
+        if ( winnerRes.WinType == 'None'){
+            msg = `<span style='color:red'> Loser `;
+            User.winnings -= User.bet;
         } else {
-            alert( "No pair for you")
+            msg = `<span style='color:blue'> Winner Type:${winnerRes.WinType} `;
+            User.winnings += User.bet*winnerRes.PayOut;
         }
-
+        msg += ` Bet: ${User.bet}  Winnerings:${User.winnings} </span>`;
+        UI.displayResult( 'Results', msg );
     }
-
-    //
-    // displayCardImg( card, "Cards");
-
 }
