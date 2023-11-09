@@ -3,14 +3,14 @@ let GameBoard = {
         [
             [null, 'SS:3', 'S', 'S', "BB:2", null, null, 'BB:1', null, null],
             [null, 'SS:5', 'S', 'S', 'S', 'S', null, null, null, null],
-            [null, 'SS:2', "S", 'BB:1', null, 'BB:1', null, null, null, null],
-            [null, 'B:1', null, 'SS:3', 'S', 'S', null, null, null, null],
-            [null, null, null, null, null, 'BB:1', null, null, null, null],
-            [null, null, 'BB:2', null, "BB:2", null, null, null, null, null],
-            [null, null, "BB:2", null, "BB:2", null, null, "BB:2", null, null],
-            [null, null, null, null, "BB:1", null, "SS:3", "S", "S", null],
-            [null, null, "SS:4", "S", "S", "S", null, null, null, null],
-            [null, "SS:5", "S", "S", "S", "S", null, null, null, null]
+            // [null, 'SS:2', "S", 'BB:1', null, 'BB:1', null, null, null, null],
+            // [null, 'B:1', null, 'SS:3', 'S', 'S', null, null, null, null],
+            // [null, null, null, null, null, 'BB:1', null, null, null, null],
+            // [null, null, 'BB:2', null, "BB:2", null, null, null, null, null],
+            // [null, null, "BB:2", null, "BB:2", null, null, "BB:2", null, null],
+            // [null, null, null, null, "BB:1", null, "SS:3", "S", "S", null],
+            // [null, null, "SS:4", "S", "S", "S", null, null, null, null],
+            // [null, "SS:5", "S", "S", "S", "S", null, null, null, null]
         ],
         token1 :{
                 icon : '<i class="fas fa-heart" style="font-size:18px;color:red;margin-left: 5px">',
