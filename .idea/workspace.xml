@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="95a60cfb-4e8c-447e-830c-01b690c37c41" name="Changes" comment="" />
+    <list default="true" id="95a60cfb-4e8c-447e-830c-01b690c37c41" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +25,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/dlash/Documents/GitHub/CSC2200_F2023_01/Week10",
+    "last_opened_file_path": "C:/Users/dlash/Documents/GitHub/CSC2200_F2023_01",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -41,6 +43,7 @@
       <workItem from="1698428916579" duration="726000" />
       <workItem from="1698430311349" duration="14000" />
       <workItem from="1698689588831" duration="15000" />
+      <workItem from="1699557037519" duration="1447000" />
     </task>
     <servers />
   </component>
