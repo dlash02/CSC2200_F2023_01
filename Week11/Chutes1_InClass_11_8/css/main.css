@@ -52,3 +52,6 @@ button:hover {
 table {
     border-collapse: collapse;
 }
+#die {
+    height: 60px;
+}

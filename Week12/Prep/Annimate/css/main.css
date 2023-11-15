@@ -1,0 +1,13 @@
+#mainContainer{
+    width: 400px;
+    height: 400px;
+    position: relative;
+    background: yellow;
+}
+
+#myBlock{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background: red;
+}
