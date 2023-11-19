@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel='stylesheet' href="css/main.css" type="text/css" />
+    <script type="application/javascript" src="js/craps.js" /></script>
+</head>
+<body>
+    <main id="grid-container">
+        <header>
+            <div id="banner">
+                AU Craps
+            </div>
+        </header>
+        <div id="mainLeft">
+            <div id="initialLeftName">
+                <div id="inNameLabel"> Name:</div>
+                <div id="inNameContainer"><input id='inName' type="text" required/>
+                    <div id="nameErr"></div>
+                </div>
+            </div>
+            <div id="initialLeftBet">
+                <div> Bet:</div>
+                <div><input id='bet' type="number" min="1" max="1000" required/></div>
+                <div id="betErr"></div>
+                <button class='button' type="button" id="initialButton" onClick="startFromScratch()"> Enter to start </button>
+            </div>
+            <button style='display:none' class='button' type="button" id="makePtButton" onClick="makeThePt()"> Roll to Make Point </button>
+        </div>
+        <div id="mainCenter">
+            <div id="rolling" style="display: none">
+                <img src="imgs/rollingDice.gif" height="100px" alt="rolling die"/>
+            </div>
+            <div id="dice"></div>
+            <div id="diceResults"></div>
+        </div>
+        <div id="mainRight">
+            <div id="rightStatus"></div>
+            <div id="rightTotals"></div>
+        </div>
+    </main>
+</body>
+</html>

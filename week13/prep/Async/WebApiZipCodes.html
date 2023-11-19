@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>The Zipper </title>
+    <link rel="stylesheet" href="css/tableStyles.css" />
+    <link rel="stylesheet" href="css/zipperStyles.css" />
+    <script src="js/zipper.js" type="application/javascript" > </script>
+</head>
+<body>
+<div id="grid-container">
+    <div id="header">
+        <h2> Zip Coder </h2>
+    </div>
+    <div id="mainLeft">
+        <h4> Enter Zip Code </h4>
+            Zip: <input type="number" id="zip" min=10000 max=99999 class="form-control"/>
+           <br /> <button type="button" class="btn btn-primary" onclick="getZipInfo()">Find Zip Info</button>
+    </div>
+    <div id="mainRight">
+        <h2> Results </h2>
+        <span id="results"> results here</span>
+    </div>
+</div>
+</body>
+</html>

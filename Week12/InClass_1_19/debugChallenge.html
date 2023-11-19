@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buggy Code</title>
+</head>
+<body>
+
+<label for="numberInput">Enter a number:</label>
+<input type="text" id="numberInput" placeholder="Enter a number">
+
+<button onclick="calculateFactorial()">Calculate Factorial</button>
+
+<div id="output"></div>
+
+<script>
+
+  function calculateFactorial() {
+    // Get input value from the text box
+    let userInput = document.getElementById("numberInput").value;
+
+    // Convert the input to a number
+    let numberToFactorialize = parseInt(userInput);
+
+    let result = 1;
+
+    for (let i = numberToFactorialize; i > 1; i--) {
+      result *= i;
+    }
+
+    // Display the result
+    document.getElementById("output").innerText = `The factorial of ${numberToFactorialize} is ${result}`;
+  }
+</script>
+
+</body>
+</html>
+
