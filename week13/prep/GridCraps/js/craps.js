@@ -163,7 +163,7 @@ function startFromScratch() {
              UI.showDie( d1, d2);
             User.pointToMake = d1.value + d2.value;
             User.rolls += 1;
-            if (Game.winnerOnComeOut( User.pointToMake)){
+           if  (Game.winnerOnComeOut( User.pointToMake)){
                 // show Winner
                 UI.showWinner( User.pointToMake );
                 User.winnings += User.bet;
