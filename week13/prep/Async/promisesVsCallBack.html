@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="css/promiseMain.css" />
+  <script>
+    function doCallBack() {
+      const userLeft = false;
+      const processingSiteDown = true;
+      function shoppingCartProcessCard( callBack, errorCallBack ){
+          if (userLeft) {
+            errorCallBack(
+                    { type: 'User Left',
+                      message: ":("
+                    }
+            )
+          } else if ( processingSiteDown ) {
+              errorCallBack(
+                    { type: 'Processing Error',
+                      message: "Error: Our Processing Server is unavailable"
+                    }
+            )
+          } else {
+            callBack('Success: your stuff will be available soon')
+          }
+      }
+      console.log( "Inside doPromise")
+      shoppingCartProcessCard( (message) => {
+        document.getElementById("results").innerHTML = 'success:' + message;
+      }, ( error ) => {
+        let m = `Type:${error.type} Message:${error.message}`;
+        document.getElementById("results").innerHTML = m;
+      })
+    }
+
+    function doWithPromise() {
+      const userLeft = false;
+      const processingSiteDown = false;
+
+      function shoppingCartProcessPromise() {
+        return new Promise((resolve, reject) => {
+          if (userLeft) {
+            reject(
+                    {
+                      type: 'User Left',
+                      message: ":("
+                    }
+            )
+          } else if (processingSiteDown) {
+            reject(
+                    {
+                      type: 'Processing Error',
+                      message: "Error: Our Processing Server is unavailable"
+                    }
+            )
+          } else {
+            resolve('Success: your stuff will be available soon')
+          }
+        })
+      }
+
+      shoppingCartProcessPromise()
+              .then((message) => {
+                document.getElementById("results").innerHTML = 'success:' + message;
+              }).catch((error) => {
+        let m = `Type:${error.type} Message:${error.message}`;
+        document.getElementById("results").innerHTML = m;
+      })
+    }
+
+  </script>
+</head>
+<body>
+  <div id="mainContainer">
+    <header>
+      head
+    </header>
+    <div id="mainLeft">
+      left
+    </div>
+    <div id="mainRight">
+      <button type="button" onClick="doWithPromise()"> Start </button>
+      <div id="results"> </div>
+    </div>
+  </div>
+</body>
+</html>

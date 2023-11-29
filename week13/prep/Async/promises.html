@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" href="css/promiseMain.css" />
+  <script>
+    function doPromise() {
+      console.log( "Inside doPromise")
+      let numb = document.getElementById("myNumber").value;
+      let res = parseInt(numb);
+      let p = new Promise((resolve, reject) => {
+        res += 1
+        if (res == 2) {
+          resolve("Success");
+        } else {
+          reject('Failed');
+        }
+      }).then((message) => {
+        let resMessage = `FL1: message:${message} res:${res}`;
+        document.getElementById("results").innerHTML = resMessage;
+      }).catch((message) => {
+        let resMessage = `FL0: Catch message:${message} res:${res}`;
+        document.getElementById("results").innerHTML = resMessage;
+      });
+    }
+  </script>
+</head>
+<body>
+  <div id="mainContainer">
+    <header>
+      head
+    </header>
+    <div id="mainLeft">
+      left
+    </div>
+    <div id="mainRight">
+      Number: <input type="text" id="myNumber">
+      <button type="button" onClick="doPromise()"> Start </button>
+      <div id="results"> </div>
+    </div>
+  </div>
+</body>
+</html>
