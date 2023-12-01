@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> My ToDoList </title>
+  <link rel="stylesheet" href="css/tableStyles.css" />
+  <script src="js/fetchData.js" type="application/javascript"> </script>
+</head>
+<body>
+  <table id="data-table">
+    <thead>
+      <tr>
+        <th> User Id </th>
+        <th> Task Id </th>
+        <th> Title </th>
+        <th> Completed </th>
+      </tr>
+    </thead>
+    <tbody id="theBody"></tbody>
+  </table>
+  <div id="result"> </div>
+ <button type="button" onclick="loadTable()"> Load the table</button>
+</body>
+</html>
