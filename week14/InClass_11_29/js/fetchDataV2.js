@@ -1,5 +1,5 @@
-function loadTable( id ){
-   let url = `https://jsonplaceholder.typicode.com/todos/${id}`;
+function loadTable(  ){
+   let url = `https://jsonplaceholder.typicode.com/todos`;
    fetch( url )
        .then( resp => {
            if ( !resp.ok){
@@ -18,13 +18,15 @@ function loadTable( id ){
 }
 function addToTable( data ){
     const tBody = document.getElementById("theBody");
-    const newTR = document.createElement("tr");
-    newTR.innerHTML = `
-        <td> ${data.userId} </td>
-        <td> ${data.id} </td>
-        <td> ${data.title} </td>
-        <td> ${data.completed} </td>
+    for (let i = 0; i < data.length; i++) {
+        let row = data[i];
+        const newTR = document.createElement("tr");
+        newTR.innerHTML = `
+        <td> ${row.userId} </td>
+        <td> ${row.id} </td>
+        <td> ${row.title} </td>
+        <td> ${row.completed} </td>
     `;
-    tBody.appendChild( newTR );
-
+        tBody.appendChild(newTR);
+    }
 }
