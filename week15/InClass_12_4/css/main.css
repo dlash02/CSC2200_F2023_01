@@ -18,11 +18,3 @@ header {
     border: 1px solid;
     background-color: #dfe3ee;
 }
-#error {
-    color: red;
-    font-family: "Comic Sans MS";
-}
-#success {
-    color: blue;
-    font-family: "Comic Sans MS";
-}

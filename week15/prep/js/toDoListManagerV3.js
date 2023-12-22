@@ -41,7 +41,9 @@ function addToTable( data ){
         newTR.innerHTML = `
         <td> ${row.id} </td>
         <td> ${row.title} </td>
-        <td> ${row.completed} </td>
+        <td> ${row.completed} 
+                <td> <button type="button" onClick='handleUpdate(${row.id}, "${row.title}")'> Mark Done ${row.id} </td>
+        </td>
         <td> <button type="button" onClick="handleDelete(${row.id})"> Delete ${row.id} </td>
     `;
         tBody.appendChild(newTR);
@@ -66,6 +68,7 @@ function attachEventListener() {
         }).then(( resp) => resp.json())
             .then (data => {
                 console.log("Added new item data="); console.log( data);
+                localStorage.removeItem(rKey );
                 localStorage.setItem(rKey, `Item Added Complete`);
                 location.reload();
             }).catch( error => {
@@ -74,15 +77,35 @@ function attachEventListener() {
         })
     });
 }
-function handleDelete( id){
+function handleDelete( id ){
         URL = `${baseUrl}/${id}`;
         fetch(URL , {
             method: 'DELETE',
         }).then(() => {
             alert("delete Compelte")
+            localStorage.removeItem(rKey );
             localStorage.setItem(rKey, `Delete id:${id} Complete`);
             location.reload();
         })
+}
+function handleUpdate( id, title ){
+    let r = {};
+    r.id = id;
+    r.title = title;
+    r.completed = 'true';
+    URL = `${baseUrl}/${id}`;
+    const options = {
+        method : 'PUT',
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify( r )
+    }
+    fetch(URL , options )
+    .then(() => {
+        alert("Updated Compelte");
+        localStorage.removeItem(rKey );
+        localStorage.setItem(rKey, `Marked id:${id} Complete`);
+        location.reload();
+    })
 }
 function showMsg( id, msg ){
     msg = `<span id='${id}'> ${msg} </span>`;

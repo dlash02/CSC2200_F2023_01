@@ -1,0 +1,34 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Study for CSC2200",
+      "completed": false
+    },
+    {
+      "title": "Eat More Beans",
+      "completed": "false",
+      "id": 2
+    },
+    {
+      "title": "Eat Beans",
+      "completed": "true",
+      "id": 3
+    },
+    {
+      "title": "Blah 222",
+      "completed": "false",
+      "id": 8
+    },
+    {
+      "title": "Sleep alot",
+      "completed": "false",
+      "id": 10
+    },
+    {
+      "title": "Create item",
+      "completed": "false",
+      "id": 11
+    }
+  ]
+}
