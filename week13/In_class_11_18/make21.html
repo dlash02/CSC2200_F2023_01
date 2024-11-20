@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Game</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #80ffdb;
+      padding: 0px;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    #grid-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      grid-template-rows: 100px 400px;
+      gap: 10px;
+      width: 80%;
+      border: 2px solid #2b2d42;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      background-color: #2b2d42;
+      grid-column: 1/4;
+      text-align: center;
+    }
+    #banner {
+      font-family: "Comic Sans MS";
+      margin-top: 25px;
+      font-size: 1.6rem;
+      color: #edf2f4;
+    }
+    #mainLeft, #mainRight, #mainCenter {
+      background-color: #8d99ae;
+      border: 1px solid black;
+      padding: 20px;
+      font-size: 1.4rem;
+      overflow: auto;
+    }
+    #mainCenter {
+      background-color: #edf2f4;
+    }
+    .button {
+      border-radius: 12px;
+      background-color: #6930c3;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+      display: block;
+      margin: 10px 0;
+    }
+    .button:hover {
+      background-color: #4b1a9c;
+    }
+    .restart-button {
+      background-color: #38b000;
+    }
+    .restart-button:hover {
+      background-color: #2c6e00;
+    }
+    table, tr, td, th {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    @media (max-width: 1000px) {
+      #grid-container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 100px 200px 200px;
+      }
+      #mainRight {
+        background-color: yellow;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="grid-container">
+  <header>
+    <div id="banner">Dice Game</div>
+  </header>
+  <div id="mainLeft">
+    <p class="instructions">Roll until your score is between 18-21. If you exceed 21 or use more than 5 rolls, you lose!</p>
+  </div>
+  <div id="mainCenter">
+    <button id="rollButton" class="button">Roll Dice</button>
+    <div class="score-display" id="scoreDisplay">Score: 0</div>
+    <img id="diceImage" class="dice-image" height="75px" src="" alt="" style="display: none;">
+    <div class="roll-history" id="rollHistory">Rolls: []</div>
+    <div class="result" id="resultDisplay"></div>
+    <button id="restartButton" class="button restart-button" style="display: none;">Play Again</button>
+  </div>
+  <div id="mainRight">
+    <p>Game Instructions:</p>
+    <ul>
+      <li>Press the Roll button to roll the dice.</li>
+      <li>Try to achieve a score between 18 and 21.</li>
+      <li>Maximum 5 rolls allowed per game.</li>
+      <li>If your score exceeds 21 or you reach 5 rolls, you lose.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  const Dice = {
+    die: [
+      { img: 'Die1.PNG', value: 1, alt: "Die1 Image" },
+      { img: 'Die2.PNG', value: 2, alt: "Die2 Image" },
+      { img: 'Die3.PNG', value: 3, alt: "Die3 Image" },
+      { img: 'Die4.PNG', value: 4, alt: "Die4 Image" },
+      { img: 'Die5.PNG', value: 5, alt: "Die5 Image" },
+      { img: 'Die6.PNG', value: 6, alt: "Die6 Image" }
+    ],
+    roll: function() {
+      const rollIndex = Math.floor(Math.random() * this.die.length);
+      return this.die[rollIndex];
+    }
+  };
+
+  const Game = {
+    currentScore: 0,
+    rollHistory: [],
+    maxRolls: 5,
+    rollButton: document.getElementById('rollButton'),
+    scoreDisplay: document.getElementById('scoreDisplay'),
+    resultDisplay: document.getElementById('resultDisplay'),
+    rollHistoryDisplay: document.getElementById('rollHistory'),
+    diceImage: document.getElementById('diceImage'),
+    restartButton: document.getElementById('restartButton'),
+
+    startNewGame: function() {
+      this.currentScore = 0;
+      this.rollHistory = [];
+      this.updateUI();
+      this.enableRollButton();
+      this.restartButton.style.display = 'none';
+    },
+
+    updateUI: function() {
+      this.scoreDisplay.textContent = `Score: ${this.currentScore}`;
+      this.rollHistoryDisplay.textContent = `Rolls: [${this.rollHistory.join(', ')}]`;
+      this.diceImage.style.display = 'none';
+    },
+
+    enableRollButton: function() {
+      this.rollButton.disabled = false;
+    },
+
+    disableRollButton: function() {
+      this.rollButton.disabled = true;
+    },
+
+    rollDice: function() {
+      if (this.rollHistory.length >= this.maxRolls) {
+        this.endGame('You have used all 5 rolls! You lose!');
+        return;
+      }
+
+      const roll = Dice.roll();
+      this.rollHistory.push(roll.value);
+      this.currentScore += roll.value;
+
+      this.updateUI();
+      this.displayDiceImage(roll);
+
+      if (this.currentScore > 21) {
+        this.endGame('You went over 21! You lose!');
+      } else if (this.currentScore >= 18 && this.currentScore <= 21) {
+        this.endGame('Congratulations! You win!');
+      } else if (this.rollHistory.length === this.maxRolls) {
+        this.endGame('You have reached the maximum of 5 rolls! You lose!');
+      } else {
+        this.resultDisplay.textContent = `You rolled a ${roll.value}. Keep going!`;
+      }
+    },
+
+    displayDiceImage: function(roll) {
+      this.diceImage.src = `imgs/${roll.img}`;
+      this.diceImage.alt = roll.alt;
+      this.diceImage.style.display = 'block';
+    },
+
+    endGame: function(message) {
+      this.resultDisplay.textContent = message;
+      this.disableRollButton();
+      this.restartButton.style.display = 'block';
+    }
+  };
+
+  const restartGame = () => {
+    Game.startNewGame();
+  };
+
+  Game.rollButton.addEventListener('click', () => Game.rollDice());
+  Game.restartButton.addEventListener('click', restartGame);
+
+</script>
+</body>
+</html>

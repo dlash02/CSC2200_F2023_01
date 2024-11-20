@@ -103,6 +103,7 @@ let UI  =  {
     },
     showWinner(dieTotal) {
         let id  = null;
+
         id = setTimeout(function () {
             let oStr = "<img src='imgs/winner.png' height='100'  alt='Winner Image' />";
             oStr += `<br /> <span style='color:blue' > Winner: ${dieTotal} </span>`;
@@ -111,6 +112,7 @@ let UI  =  {
         }, this.REVEAL_DELAY )
     },
     showNoWinner(dieTotal) {
+        alert( "No winner")
         let id = null;
         id = setTimeout(function () {
             document.getElementById("rightStatus").innerHTML = "No Winner, roll to Make Pts:" + dieTotal;
@@ -162,6 +164,7 @@ function startFromScratch() {
              let d2 = Dice.rollEm();
              UI.showDie( d1, d2);
             User.pointToMake = d1.value + d2.value;
+            alert( `UserPt D1:${d1.value} d2:${d2.value}` );
             User.rolls += 1;
            if  (Game.winnerOnComeOut( User.pointToMake)){
                 // show Winner
@@ -184,9 +187,11 @@ function startFromScratch() {
 }
 function makeThePt() {
         let doneRolling = false;
+    document.getElementById("rightStatus").innerHTML = "";
         while (!doneRolling) {
             let d1 = Dice.rollEm();
             let d2 = Dice.rollEm();
+            alert(`mk pt d1:${d1.value} d2:${d2.value}`);
             let dieTotal = d1.value + d2.value;
             UI.showDie(d1, d2);
 
