@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Activity Logger</title>
+    <style>
+        /* ===== Outer Layout Grid ===== */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: grid;
+            grid-template-rows: auto 1fr;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ===== Form Area ===== */
+        form {
+            background-color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, select {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 0.3rem;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 0.7rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1f7a31;
+        }
+
+        /* ===== Results Grid ===== */
+        .results {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .results div {
+            border-bottom: 1px solid #ddd;
+            padding: 0.5rem;
+        }
+
+        .results div:nth-child(-n+3) {
+            background-color: #007bff;
+            color: white;
+        }
+
+        @media (max-width: 700px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            .results {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+    </style>
+
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            const activities = [];
+            const minutes = [];
+            const intensities = [];
+
+            const form = document.getElementById("activityForm");
+            const resultsDiv = document.getElementById("results");
+
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                const activity = document.getElementById("activity").value.trim();
+                const mins = parseInt(document.getElementById("minutes").value);
+                const intensity = document.getElementById("intensity").value;
+
+                if (activity === "" || isNaN(mins) || mins <= 0) {
+                    alert("Please enter a valid activity and minutes.");
+                    return;
+                }
+
+                activities.push(activity);
+                minutes.push(mins);
+                intensities.push(intensity);
+
+                form.reset();
+                displayResults();
+            });
+
+            function displayResults() {
+                resultsDiv.innerHTML = `
+          <div>Activity</div>
+          <div>Minutes</div>
+          <div>Intensity</div>
+        `;
+
+                for (let i = 0; i < activities.length; i++) {
+                    resultsDiv.innerHTML += `
+            <div>${activities[i]}</div>
+            <div>${minutes[i]}</div>
+            <div>${intensities[i]}</div>
+          `;
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+<header>🏋️‍♀️ Fitness Activity Logger</header>
+
+<main>
+    <form id="activityForm">
+        <label>
+            Activity:
+            <input type="text" id="activity" placeholder="e.g., Running" required>
+        </label>
+
+        <label>
+            Minutes:
+            <input type="number" id="minutes" placeholder="e.g., 30" required>
+        </label>
+
+        <label>
+            Intensity:
+            <select id="intensity">
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+            </select>
+        </label>
+
+        <button type="submit">Add Activity</button>
+    </form>
+
+    <div class="results" id="results">
+        <!-- results grid will populate here -->
+    </div>
+</main>
+</body>
+</html>

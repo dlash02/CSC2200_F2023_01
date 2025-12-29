@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 2rem;
+    background-color: #fafafa;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: auto;
+}
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+}
+input[type="text"],
+select,
+textarea {
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+textarea {
+    resize: none;
+    height: 80px;
+}
+.char-counter {
+    font-size: 0.85rem;
+    color: #666;
+    text-align: right;
+}
+.checkbox-area {
+    grid-column: 1 / span 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+button {
+    grid-column: 1 / span 2;
+    padding: 0.7rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Movie list grid */
+.movie-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.movie-item {
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+.movie-item button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+}
+
+.movie-item button:hover {
+    background-color: #b02a37;
+}
+
+@media (max-width: 600px) {
+    form {
+        grid-template-columns: 1fr;
+    }
+    button {
+        grid-column: 1;
+    }
+}

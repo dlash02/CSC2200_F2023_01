@@ -1,0 +1,57 @@
+#form {
+    display: grid;
+    padding: 1em;
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin: 2rem auto 0 auto;
+    max-width: 600px;
+    padding: 1em;
+}
+#form input {
+    background: #fff;
+    border: 1px solid #9c9c9c;
+}
+#form button {
+    background: lightgrey;
+    padding: 0.7em;
+    width: 100%;
+    border: 0;
+    margin: 5px;
+}
+#form button:hover {
+    background: gold;
+}
+label {
+    padding: 0.5em 0.5em 0.5em 0;
+}
+input {
+    padding: 0.7em;
+    margin-bottom: 0.5rem;
+}
+input:focus {
+    outline: 3px solid gold;
+}
+@media (min-width: 800px) {
+    #form {
+        grid-template-columns: 200px 1fr;
+        grid-gap: 16px;
+    }
+    label {
+        text-align: right;
+        grid-column: 1 / 2;
+    }
+    #results {
+        font-size: 20px;
+        grid-column: 2 / 3;
+    }
+    input, button, #results {
+        grid-column: 2 / 3;
+        position: relative;
+        top: 5px;
+
+    }
+    #header {
+        font-size: 25px;
+        grid-column: 2 / 3;
+    }
+}

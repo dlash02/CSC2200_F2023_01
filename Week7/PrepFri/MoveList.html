@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite Movies Tracker</title>
+    <link rel="stylesheet" href="css/movieMain.css">
+    <script src="js/movieMain.js"></script>
+</head>
+<body>
+<h2>🎥 Favorite Movies Tracker</h2>
+<form id="movieForm">
+    <label>
+        Movie Title:
+        <input type="text" id="title" required>
+    </label>
+
+    <label>
+        Genre:
+        <select id="genre">
+            <option>Action</option>
+            <option>Comedy</option>
+            <option>Drama</option>
+            <option>Horror</option>
+        </select>
+    </label>
+
+    <label style="grid-column: 1 / span 2;">
+        Description:
+        <textarea id="description" maxlength="150"></textarea>
+        <div class="char-counter" id="charCount">150 characters left</div>
+    </label>
+
+    <div class="checkbox-area">
+        <input type="checkbox" id="seen">
+        <label for="seen">Already seen?</label>
+    </div>
+
+    <button type="submit">Add Movie</button>
+</form>
+
+<div class="movie-list" id="movieList"></div>
+</body>
+</html>
